@@ -106,6 +106,8 @@
   width: 40vh;
   height: 15vh;
   background: #f9ca24;
+  -webkit-transition: .4s ease;
+  transition: .4s ease;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -122,6 +124,7 @@
 }
 
 .slot-box__head .slot-result .slot-result__text {
+  cursor: pointer;
   font-size: 2rem;
   font-weight: bold;
 }

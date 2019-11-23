@@ -38,8 +38,10 @@
         width: 40vh;
         height: 15vh;
         background: #f9ca24;
+        transition: .4s ease;
         @include flex(row, center, center);
         .slot-result__text{
+            cursor: pointer;
             font-size: 2rem;
             font-weight: bold;
         }

@@ -1,6 +1,8 @@
 const spin = [new Audio("audio/spin.mp3"),new Audio("audio/spin.mp3"),new Audio("audio/spin.mp3"),new Audio("audio/spin.mp3"),new Audio("audio/spin.mp3"),new Audio("audio/spin.mp3"),new Audio("audio/spin.mp3")];
 const coin = new Audio("audio/coin.mp3");
 const score_path = document.querySelector(".slot-score__text");
+let dashBoard = document.querySelector(".slot-result");
+
 let result = document.querySelector(".slot-result__text");
 
 let score = 1000;
@@ -8,6 +10,7 @@ function runSlot(){
     if(score <= 0){
         return alert("Your Balance is " + score);
     }
+    dashBoard.style.background = "#f9ca24";
     score -= 20;
     score_path.innerHTML = score + "$";
     result.innerText = "Wait";
@@ -88,6 +91,7 @@ function chooseWinner(){
     console.log(first,second,third);
 
     if(first == second && first == third || first +1 == second + 1 && first + 1 == third){
+        dashBoard.style.background = "#6ab04c";
         if(first == 1){
             score += 10000;
             score_path.innerHTML = score + "$";
@@ -117,12 +121,14 @@ function chooseWinner(){
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
         }
-    } else if(first == second || first == third || second == third || second +1 == 8 || first + 1 == 8 ){
+    } else if(first == second || second == third){
+        dashBoard.style.background = "#6ab04c";
         score += 50;
         score_path.innerHTML = score + "$";
         result.innerText = "You Win";
     }
     else {
+        dashBoard.style.background = "#eb4d4b";
         score -= 20;
         score_path.innerHTML = score + "$";
         result.innerText = "You Lose";
