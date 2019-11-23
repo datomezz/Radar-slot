@@ -134,3 +134,8 @@ function chooseWinner(){
         result.innerText = "You Lose";
     }
 }
+window.addEventListener("keydown", function(event){
+    if(event.keyCode == "32"){
+        runSlot();
+    }
+});
