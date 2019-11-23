@@ -14,17 +14,17 @@ function runSlot(){
 
     let randPosition = Math.floor(Math.random() * 28);
     let randomSlot_1 = randPosition + Math.floor(Math.random() * 7 +1);
-    let randomSlot_2 = randPosition + 4*6 + Math.floor(Math.random() * 7 +1);
-    let randomSlot_3 = randPosition + 6*6 + Math.floor(Math.random() * 7 +1);
+    let randomSlot_2 = randPosition + 30 + Math.floor(Math.random() * 7 +1);
+    let randomSlot_3 = randPosition + 60 + Math.floor(Math.random() * 7 +1);
 
     let count1 = 0;
     let count2 = 0;
     let count3 = 0;
     let sound = 0;
 
-    let slot_1 = setInterval(spin1, 80);
-    let slot_2 = setInterval(spin2, 80);
-    let slot_3 = setInterval(spin3, 80);
+    let slot_1 = setInterval(spin1, 50);
+    let slot_2 = setInterval(spin2, 50);
+    let slot_3 = setInterval(spin3, 50);
 
     function spin1(){
         count1++;
@@ -42,11 +42,11 @@ function runSlot(){
         currentSlot.className = "slot slot_" + (parseInt(currentSlot.className.substring(10, 11)) + initCount);
     }
     function spin2(){
-        count1++;
+        count2++;
         let initCount = 0;
         initCount++;
         let currentSlot = document.querySelector("#second");
-        if(count1 >= randomSlot_2){
+        if(count2 >= randomSlot_2){
             coin.play();
             clearInterval(slot_2);
         }
@@ -57,66 +57,72 @@ function runSlot(){
         currentSlot.className = "slot slot_" + (parseInt(currentSlot.className.substring(10, 11)) + initCount);
     }
     function spin3(){
-        count1++;
+        count3++;
         let initCount = 0;
+        let currentSlot = document.querySelector("#third");
         initCount++;
         sound++;
         spin[sound].play();
         if(sound == 6){
             sound = 0;
         }
-        let currentSlot = document.querySelector("#third");
-        if(count1 >= randomSlot_3){
+        if(count3 >= randomSlot_3){
             coin.play();
-            clearInterval(slot_3);
             chooseWinner();
+            clearInterval(slot_3);
         }
         if(currentSlot.className === "slot slot_7"){
             currentSlot.className = "slot slot_1";
             initCount = 0;
         }
         currentSlot.className = "slot slot_" + (parseInt(currentSlot.className.substring(10, 11)) + initCount);
+        
     }
 }
 function chooseWinner(){
-    const first = document.querySelector("#first").className;
-    console.log(first);
-    const second = document.querySelector("#second").className;
-    console.log(second);
-    const third = document.querySelector("#third").className;
-    console.log(third);
+    let first = parseInt(document.querySelector("#first").className.substring(10, 11));
+    let second = parseInt(document.querySelector("#second").className.substring(10, 11));
+    let third = parseInt(document.querySelector("#third").className.substring(10, 11)) + 1;
 
-    if(first === second && second === third){
-        if(first === "slot slot_1"){
+
+    console.log(first,second,third);
+
+    if(first == second && first == third || first +1 == second + 1 && first + 1 == third){
+        if(first == 1){
             score += 10000;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
-        } else if(first === "slot slot_2"){
+        } else if(first == 2){
             score += 2000;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
-        } else if(first === "slot slot_3"){
+        } else if(first == 3){
             score += 1500;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
-        } else if(first === "slot slot_4"){
+        } else if(first == 4){
             score += 1000;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
-        } else if(first === "slot slot_5"){
+        } else if(first == 5){
             score += 500;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
-        } else if(first === "slot slot_6"){
-            score += 100;
+        } else if(first == 6){
+            score += 250;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
-        } else if(first === "slot slot_7"){
+        } else if(first == 7){
             score == 0;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
-        } 
-    } else {
+        }
+    } else if(first == second || first == third || second == third || second +1 == 8 || first + 1 == 8 ){
+        score += 50;
+        score_path.innerHTML = score + "$";
+        result.innerText = "You Win";
+    }
+    else {
         score -= 20;
         score_path.innerHTML = score + "$";
         result.innerText = "You Lose";
