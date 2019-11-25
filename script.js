@@ -7,6 +7,7 @@ let result = document.querySelector(".slot-result__text");
 
 let score = 1000;
 function runSlot(){
+    document.querySelector(".slot-spin").style.pointerEvents = "none";
     if(score <= 0){
         return alert("Your Balance is " + score);
     }
@@ -72,6 +73,7 @@ function runSlot(){
         if(count3 >= randomSlot_3){
             coin.play();
             chooseWinner();
+            document.querySelector(".slot-spin").style.pointerEvents = "";
             clearInterval(slot_3);
         }
         if(currentSlot.className === "slot slot_7"){
@@ -90,7 +92,7 @@ function chooseWinner(){
 
     console.log(first,second,third);
 
-    if(first == second && first == third || first +1 == second + 1 && first + 1 == third || first + 7 == third){
+    if(first == second && first == third || first + 7 == third){
         dashBoard.style.background = "#6ab04c";
         if(first == 1 || first == 1 && second == 1 && third == 8){
             score += 10000;
@@ -134,7 +136,7 @@ function chooseWinner(){
     }
 }
 window.addEventListener("keydown", function(event){
-    if(event.keyCode == "32"){
+    if(event.keyCode == "32" && document.querySelector(".slot-spin").style.pointerEvents == ""){
         runSlot();
     }
 });
