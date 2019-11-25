@@ -87,12 +87,9 @@ function chooseWinner(){
     let second = parseInt(document.querySelector("#second").className.substring(10, 11));
     let third = parseInt(document.querySelector("#third").className.substring(10, 11)) + 1;
 
-
-    console.log(first,second,third);
-
     if(first == second && first == third || first +1 == second + 1 && first + 1 == third || first + 7 == third){
         dashBoard.style.background = "#6ab04c";
-        if(first == 1){
+        if(first == 1 || first == 1 && second == 1 && third == 8){
             score += 10000;
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
@@ -117,9 +114,9 @@ function chooseWinner(){
             score_path.innerHTML = score + "$";
             result.innerText = "You Win";
         } else if(first == 7){
-            score == 0;
+            score -= score;
             score_path.innerHTML = score + "$";
-            result.innerText = "You Win";
+            result.innerText = "You FUCKED";
         }
     } else if(first == second || second == third){
         dashBoard.style.background = "#6ab04c";
@@ -129,7 +126,6 @@ function chooseWinner(){
     }
     else {
         dashBoard.style.background = "#eb4d4b";
-        score -= 20;
         score_path.innerHTML = score + "$";
         result.innerText = "You Lose";
     }
