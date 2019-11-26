@@ -76,7 +76,15 @@
         width: 30vh;
         height: 18vh;
         background: #f9ca24;
-        @include flex(row, center, center);
+        @include flex(column, center, center);
+        .winners{
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 2vh;
+            &:hover{
+                color: #686de0;
+            }
+        }
     }
     .slot-spin{
         @include flex(row, center, center);
@@ -188,5 +196,8 @@
     .slot-spin{
         width: 30% !important;
         height: 90% !important;
+    }
+    .winners{
+        font-size: 1.5vh !important;
     }
 }

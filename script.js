@@ -4,13 +4,14 @@ const score_path = document.querySelector(".slot-score__text");
 let dashBoard = document.querySelector(".slot-result");
 
 let result = document.querySelector(".slot-result__text");
-
 let score = 1000;
+
 function runSlot(){
     document.querySelector(".slot-spin").style.pointerEvents = "none";
     if(score <= 0){
         return alert("Your Balance is " + score);
     }
+
     dashBoard.style.background = "#f9ca24";
     score -= 20;
     score_path.innerHTML = score + "$";
@@ -92,8 +93,9 @@ function chooseWinner(){
 
     console.log(first,second,third);
 
-    if(first == second && first == third || first + 7 == third){
+    if(first == second && first == third && second == third || first + 7 == third){
         dashBoard.style.background = "#6ab04c";
+
         if(first == 1 || first == 1 && second == 1 && third == 8){
             score += 10000;
             score_path.innerHTML = score + "$";
